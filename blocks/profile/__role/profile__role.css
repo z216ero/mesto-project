@@ -1,0 +1,17 @@
+.profile__role {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  margin: 0;
+  margin-bottom: 9px;
+}
+
+@media screen and (max-width: 635px) {
+  .profile__role {
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 0px;
+    margin-top: 14px;
+  }
+}
