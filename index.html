@@ -7,6 +7,25 @@
     <title>Mesto</title>
   </head>
   <body class="body">
+    <div class="popup">
+      <div class="popup__container">
+        <form action="" class="popup__form">
+          <div class="popup__header">Редактировать профиль</div>
+          <fieldset class="popup__fieldset">
+            <input type="text" class="popup__name" value="Жак-Ив Кусто" />
+            <input
+              type="text"
+              class="popup__role"
+              value="Исследователь океана"
+            />
+            <button type="submit" class="popup__save-button">Сохранить</button>
+          </fieldset>
+        </form>
+        <button class="popup__close-button">
+          <img src="./images/Close Icon.svg" alt="" class="popup__close-icon" />
+        </button>
+      </div>
+    </div>
     <div class="root">
       <header class="header">
         <img src="./images/logo.svg" alt="лого место" class="header__logo" />
@@ -21,7 +40,7 @@
             />
             <div class="profile__info">
               <p class="profile__name">Жак-Ив Кусто</p>
-              <button class="profile__edit-button">
+              <button class="profile__edit-button hover">
                 <img
                   src="./images/photo_edit.svg"
                   alt=""
@@ -31,7 +50,7 @@
               <p class="profile__role">Исследователь океана</p>
             </div>
           </div>
-          <button class="profile__add-button">
+          <button class="profile__add-button hover">
             <img
               src="./images/photo_add.png"
               alt=""
@@ -48,11 +67,7 @@
             />
             <div class="element__bottom">
               <p class="element__name">Карачаевск</p>
-              <img
-                src="./images/photo_like.svg"
-                alt="Лайк"
-                class="element__like-button"
-              />
+              <button class="element__like-button"></button>
             </div>
           </div>
           <div class="element">
@@ -62,12 +77,29 @@
               class="element__photo"
             />
             <div class="element__bottom">
+              <p class="element__name">Гора Эльбрус</p>
+              <button class="element__like-button"></button>
+            </div>
+          </div>
+          <div class="element">
+            <img src="/images/photo_elbrus.jpg" alt="" class="element__photo" />
+            <div class="element__bottom">
+              <p class="element__name">Домбай</p>
+              <button class="element__like-button"></button>
+            </div>
+          </div>
+          <div class="element">
+            <img src="/images/photo_dombai.jpg" alt="" class="element__photo" />
+            <div class="element__bottom">
+              <p class="element__name">Гора Эльбрус</p>
+              <button class="element__like-button"></button>
+            </div>
+          </div>
+          <div class="element">
+            <img src="/images/photo_elbrus.jpg" alt="" class="element__photo" />
+            <div class="element__bottom">
               <p class="element__name">Карачаевск</p>
-              <img
-                src="./images/photo_like.svg"
-                alt="Лайк"
-                class="element__like-button"
-              />
+              <button class="element__like-button"></button>
             </div>
           </div>
           <div class="element">
@@ -77,62 +109,14 @@
               class="element__photo"
             />
             <div class="element__bottom">
-              <p class="element__name">Карачаевск</p>
-              <img
-                src="./images/photo_like.svg"
-                alt="Лайк"
-                class="element__like-button"
-              />
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="/images/photo_karachaevsk.jpg"
-              alt=""
-              class="element__photo"
-            />
-            <div class="element__bottom">
-              <p class="element__name">Карачаевск</p>
-              <img
-                src="./images/photo_like.svg"
-                alt="Лайк"
-                class="element__like-button"
-              />
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="/images/photo_karachaevsk.jpg"
-              alt=""
-              class="element__photo"
-            />
-            <div class="element__bottom">
-              <p class="element__name">Карачаевск</p>
-              <img
-                src="./images/photo_like.svg"
-                alt="Лайк"
-                class="element__like-button"
-              />
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="/images/photo_karachaevsk.jpg"
-              alt=""
-              class="element__photo"
-            />
-            <div class="element__bottom">
-              <p class="element__name">Карачаевск</p>
-              <img
-                src="./images/photo_like.svg"
-                alt="Лайк"
-                class="element__like-button"
-              />
+              <p class="element__name">Карачаево-Черкесская</p>
+              <button class="element__like-button"></button>
             </div>
           </div>
         </section>
       </main>
-      <footer class="footer"></footer>
+      <footer class="footer">© 2022 Mesto Russia</footer>
     </div>
+    <script src="./script/script.js"></script>
   </body>
 </html>

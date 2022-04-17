@@ -1,0 +1,6 @@
+.body {
+  background-color: #000;
+  position: relative;
+  font-family: "Inter", "Arial", sans-serif;
+  text-rendering: optimizeLegibility;
+}

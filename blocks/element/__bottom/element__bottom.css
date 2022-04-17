@@ -1,0 +1,6 @@
+.element__bottom {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 21px;
+  margin: 21px 0 21px;align-items: center;
+}

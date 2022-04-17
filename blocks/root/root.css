@@ -2,11 +2,4 @@
   max-width: 880px;
   min-width: 282px;
   margin: 0 auto;
-  
-  font-family: "Inter", "Arial", sans-serif;
-  text-rendering: optimizeLegibility;
-}
-
-.body {
-  background-color: #000;
 }

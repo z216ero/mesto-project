@@ -1,0 +1,15 @@
+.popup__role {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 48px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 636px) {
+  .popup__role {
+    margin-bottom: 45px;
+  }
+}
