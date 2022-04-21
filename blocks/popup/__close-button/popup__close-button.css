@@ -4,7 +4,7 @@
   position: absolute;
   border: none;
   padding: 0;
-  background-color: black;
+  background-color: transparent;
   top: -40px;
   right: -40px;
 }
@@ -20,4 +20,5 @@
 
 .popup__close-button:hover {
   opacity: 0.6;
+  cursor: pointer;
 }

@@ -2,4 +2,11 @@
   max-width: 880px;
   min-width: 282px;
   margin: 0 auto;
+  padding-top: 45px;
+}
+
+@media screen and (max-width: 320px) {
+  .root {
+    padding-top: 28px;
+  }
 }

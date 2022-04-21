@@ -1,5 +1,5 @@
 .profile__edit-button {
-  background-color: #000;
+  background-color: transparent;
   border: 1px solid #fff;
   width: 24px;
   height: 24px;
@@ -7,6 +7,9 @@
   margin-bottom: 6px;
   padding: 0;
   align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 636px) {

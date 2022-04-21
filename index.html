@@ -9,20 +9,16 @@
   <body class="body">
     <div class="popup popup_visible">
       <div class="popup__container">
-        <form action="" class="popup__form">
-          <div class="popup__header">Редактировать профиль</div>
+        <form action="post" name="profile-edit" id="profile-edit" class="popup__form">
+          <h2 class="popup__header">Редактировать профиль</h2>
           <fieldset class="popup__fieldset">
-            <input type="text" class="popup__name" value="Жак-Ив Кусто" />
-            <input
-              type="text"
-              class="popup__role"
-              value="Исследователь океана"
-            />
+            <input type="text" id="name" name="name" class="popup__input" value="Жак-Ив Кусто" />
+            <input type="text" id="role" name="role" class="popup__input" value="Исследователь океана" />
             <button type="submit" class="popup__save-button">Сохранить</button>
           </fieldset>
         </form>
-        <button class="popup__close-button">
-          <img src="./images/Close Icon.svg" alt="" class="popup__close-icon" />
+        <button type="button" class="popup__close-button">
+          <img src="./images/Close Icon.svg" alt="закрыть" class="popup__close-icon" />
         </button>
       </div>
     </div>
@@ -39,80 +35,80 @@
               class="profile__avatar"
             />
             <div class="profile__info">
-              <p class="profile__name">Жак-Ив Кусто</p>
-              <button class="profile__edit-button hover">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button type="button" class="profile__edit-button hover">
                 <img
                   src="./images/photo_edit.svg"
-                  alt=""
+                  alt="изменить"
                   class="profile__edit-button-icon"
                 />
               </button>
               <p class="profile__role">Исследователь океана</p>
             </div>
           </div>
-          <button class="profile__add-button hover">
+          <button type="button" class="profile__add-button hover">
             <img
-              src="./images/photo_add.png"
-              alt=""
+              src="./images/photo__add_svg.svg"
+              alt="добавить"
               class="profile__add-button-icon"
             />
           </button>
         </section>
         <section class="elements">
-          <div class="element">
+          <article class="element">
             <img
               src="./images/photo_karachaevsk.jpg"
-              alt=""
+              alt="Карачаевск"
               class="element__photo"
             />
             <div class="element__bottom">
-              <p class="element__name">Карачаевск</p>
-              <button class="element__like-button"></button>
+              <h3 class="element__name">Карачаевск</h3>
+              <button type="button" class="element__like-button"></button>
             </div>
-          </div>
-          <div class="element">
+          </article>
+          <article class="element">
             <img
               src="./images/photo_karachaevsk.jpg"
-              alt=""
+              alt="Карачаевск"
               class="element__photo"
             />
             <div class="element__bottom">
-              <p class="element__name">Гора Эльбрус</p>
-              <button class="element__like-button"></button>
+              <h3 class="element__name">Гора Эльбрус</h3>
+              <button type="button" class="element__like-button"></button>
             </div>
-          </div>
-          <div class="element">
-            <img src="./images/photo_elbrus.jpg" alt="" class="element__photo" />
+          </article>
+          <article class="element">
+            <img src="./images/photo_elbrus.jpg" alt="Эльбрус" class="element__photo" />
             <div class="element__bottom">
-              <p class="element__name">Домбай</p>
-              <button class="element__like-button"></button>
+              <h3 class="element__name">Домбай</h3>
+              <button type="button" class="element__like-button"></button>
             </div>
-          </div>
-          <div class="element">
-            <img src="./images/photo_dombai.jpg" alt="" class="element__photo" />
+          </article>
+          <article class="element">
+            <img src="./images/photo_dombai.jpg" alt="Домбай" class="element__photo" />
             <div class="element__bottom">
-              <p class="element__name">Гора Эльбрус</p>
-              <button class="element__like-button"></button>
+              <h3 class="element__name">Гора Эльбрус</h3>
+              <button type="button" class="element__like-button"></button>
             </div>
-          </div>
-          <div class="element">
-            <img src="./images/photo_elbrus.jpg" alt="" class="element__photo" />
+          </article>
+          <article class="element">
+            <img src="./images/photo_elbrus.jpg" alt="Эльбрус" class="element__photo" />
             <div class="element__bottom">
-              <p class="element__name">Карачаевск</p>
-              <button class="element__like-button"></button>
+              <ph3 class="element__name">Карачаевск</ph3>
+              <button type="button" class="element__like-button"></button>
             </div>
-          </div>
-          <div class="element">
+          </article>
+          <article class="element">
             <img
               src="./images/photo_karachaevsk.jpg"
-              alt=""
+              alt=" Карачаевск"
               class="element__photo"
             />
             <div class="element__bottom">
-              <p class="element__name">Карачаево-Черкесская</p>
-              <button class="element__like-button"></button>
+              <h3 class="element__name">Карачаево-Черкесская</h3>
+              <button type="button" class="element__like-button"></button>
             </div>
-          </div>
+          </article>
         </section>
       </main>
       <footer class="footer">© 2022 Mesto Russia</footer>

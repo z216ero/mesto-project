@@ -1,3 +1,10 @@
 .profile__add-button-icon {
   color: #fff;
 }
+
+@media screen and (max-width:636px) {
+  .profile__add-button-icon{
+    width: 16px;
+    height: 16px;
+  }
+}
