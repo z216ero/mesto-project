@@ -5,7 +5,7 @@ Mesto
 *адапативная верстка по макету*
 
 ## stacks
-**html,css(grid,flex) и чуть чуть Js**
+**html,css(grid,flex) и чуть Js**
 
 ## ССылка на проект
 [Ссылка](https://z216ero.github.io/mesto-project/) 

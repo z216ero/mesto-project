@@ -7,7 +7,7 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 636px) {
   .elements {
     margin-top: 36px;
     gap: 20px;

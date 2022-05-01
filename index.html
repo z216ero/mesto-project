@@ -7,18 +7,40 @@
     <title>Mesto</title>
   </head>
   <body class="body">
-    <div class="popup popup_visible">
+    <div class="popup">
       <div class="popup__container">
-        <form action="post" name="profile-edit" id="profile-edit" class="popup__form">
+        <form
+          action="post"
+          name="profile-edit"
+          id="profile-edit"
+          class="popup__form"
+        >
           <h2 class="popup__header">Редактировать профиль</h2>
           <fieldset class="popup__fieldset">
-            <input type="text" id="name" name="name" class="popup__input" value="Жак-Ив Кусто" />
-            <input type="text" id="role" name="role" class="popup__input" value="Исследователь океана" />
+            <input type="text" id="name" name="name" class="popup__input" />
+            <input type="text" id="role" name="role" class="popup__input" />
             <button type="submit" class="popup__save-button">Сохранить</button>
           </fieldset>
         </form>
         <button type="button" class="popup__close-button">
-          <img src="./images/Close Icon.svg" alt="закрыть" class="popup__close-icon" />
+          <img
+            src="./images/Close Icon.svg"
+            alt="закрыть"
+            class="popup__close-icon"
+          />
+        </button>
+      </div>
+    </div>
+    <div class="photo-popup">
+      <div class="photo-popup__container">
+        <img src="" ; alt="" class="photo-popup__photo" />
+        <p class="photo-popup__name"></p>
+        <button type="button" class="photo-popup__close-button">
+          <img
+            src="./images/Close Icon.svg"
+            alt="закрыть"
+            class="popup__close-icon"
+          />
         </button>
       </div>
     </div>
@@ -54,64 +76,20 @@
             />
           </button>
         </section>
-        <section class="elements">
-          <article class="element">
-            <img
-              src="./images/photo_karachaevsk.jpg"
-              alt="Карачаевск"
-              class="element__photo"
-            />
-            <div class="element__bottom">
-              <h3 class="element__name">Карачаевск</h3>
-              <button type="button" class="element__like-button"></button>
-            </div>
-          </article>
-          <article class="element">
-            <img
-              src="./images/photo_karachaevsk.jpg"
-              alt="Карачаевск"
-              class="element__photo"
-            />
-            <div class="element__bottom">
-              <h3 class="element__name">Гора Эльбрус</h3>
-              <button type="button" class="element__like-button"></button>
-            </div>
-          </article>
-          <article class="element">
-            <img src="./images/photo_elbrus.jpg" alt="Эльбрус" class="element__photo" />
-            <div class="element__bottom">
-              <h3 class="element__name">Домбай</h3>
-              <button type="button" class="element__like-button"></button>
-            </div>
-          </article>
-          <article class="element">
-            <img src="./images/photo_dombai.jpg" alt="Домбай" class="element__photo" />
-            <div class="element__bottom">
-              <h3 class="element__name">Гора Эльбрус</h3>
-              <button type="button" class="element__like-button"></button>
-            </div>
-          </article>
-          <article class="element">
-            <img src="./images/photo_elbrus.jpg" alt="Эльбрус" class="element__photo" />
-            <div class="element__bottom">
-              <ph3 class="element__name">Карачаевск</ph3>
-              <button type="button" class="element__like-button"></button>
-            </div>
-          </article>
-          <article class="element">
-            <img
-              src="./images/photo_karachaevsk.jpg"
-              alt=" Карачаевск"
-              class="element__photo"
-            />
-            <div class="element__bottom">
-              <h3 class="element__name">Карачаево-Черкесская</h3>
-              <button type="button" class="element__like-button"></button>
-            </div>
-          </article>
-        </section>
+        <section class="elements"></section>
       </main>
       <footer class="footer">© 2022 Mesto Russia</footer>
     </div>
+    <template id="element-template">
+      <article class="element">
+        <img src="" alt="" class="element__photo" />
+        <button type="button" class="element__delete-button"></button>
+        <div class="element__bottom">
+          <h3 class="element__name"></h3>
+          <button type="button" class="element__like-button"></button>
+        </div>
+      </article>
+    </template>
+    <script src="./src/script.js"></script>
   </body>
 </html>
