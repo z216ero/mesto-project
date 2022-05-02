@@ -4,8 +4,7 @@
   line-height: 48px;
   font-weight: 500;
   margin: 0;
-  min-width: 294px;
-  max-width: 498px;
+  width: 294px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

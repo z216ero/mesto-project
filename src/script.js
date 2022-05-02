@@ -1,18 +1,29 @@
-let condition = "";
-const editBtn = document.querySelector(".profile__edit-button");
-const photoAddBtn = document.querySelector(".profile__add-button");
+const photoPopup = document.querySelector(".photo-popup");
+const profilePopup = document.querySelector(".profile-popup");
+const cardPopup = document.querySelector(".card-popup");
 const popup = document.querySelector(".popup");
-const closeBtn = document.querySelector(".popup__close-button");
-const closePhotoBtn = document.querySelector(".photo-popup__close-button");
-const formElement = document.querySelector(".popup__form");
-const titleInput = document.querySelector("#name");
-const descriptionInput = document.querySelector("#role");
+
+const profileEditBtn = document.querySelector(".profile__edit-button");
+const newCardAddBtn = document.querySelector(".profile__add-button");
+
+const photoPopupCloseBtn = photoPopup.querySelector(".popup__close-button");
+const profilePopupCloseBtn = profilePopup.querySelector(".popup__close-button");
+const cardPopupCloseBtn = cardPopup.querySelector(".popup__close-button");
+
+const profileForm = profilePopup.querySelector(".popup__form");
+const cardForm = cardPopup.querySelector(".popup__form");
+
+const profileName = profileForm.querySelector("#name");
+const profileRole = profileForm.querySelector("#role");
+
+const cardTitleValue = cardForm.querySelector("#title");
+const cardSrcValue = cardForm.querySelector("#src");
+
 const nameValue = document.querySelector(".profile__name");
 const roleValue = document.querySelector(".profile__role");
 const cardTemplate = document.querySelector("#element-template").content;
 const elements = document.querySelector(".elements");
-const saveBtn = document.querySelector(".popup__save-button");
-const photoPopup = document.querySelector(".photo-popup");
+
 const initialCards = [
   {
     name: "Архыз",
@@ -42,79 +53,85 @@ const initialCards = [
 
 setDefaultCard();
 
-editBtn.addEventListener("click", () => {
-  condition = "profile";
-  showPopup();
+profileEditBtn.addEventListener("click", () => {
+  showPopup(profilePopup);
+  loadProfileData();
 });
 
-photoAddBtn.addEventListener("click", () => {
-  condition = "photo";
-  showPopup();
+newCardAddBtn.addEventListener("click", () => {
+  showPopup(cardPopup);
 });
 
-closeBtn.addEventListener("click", closePopup);
-closePhotoBtn.addEventListener("click", closePhoto);
-function setData() {
-  const header = document.querySelector(".popup__header");
+photoPopupCloseBtn.addEventListener("click", () => {
+  closePopup(photoPopup);
+});
 
-  if (condition === "profile") {
-    header.textContent = "Редактировать профиль";
-    titleInput.value = nameValue.textContent;
-    descriptionInput.value = roleValue.textContent;
-    saveBtn.textContent = "Сохранить";
-  }
+profilePopupCloseBtn.addEventListener("click", () => {
+  closePopup(profilePopup);
+});
 
-  if (condition === "photo") {
-    header.textContent = "Новое место";
-    titleInput.value = "";
-    descriptionInput.value = "";
-    titleInput.placeholder = "Название";
-    descriptionInput.placeholder = "Ссылка на картинку";
-    saveBtn.textContent = "Создать";
-  }
-}
+cardPopupCloseBtn.addEventListener("click", () => {
+  closePopup(cardPopup);
+});
 
-formElement.addEventListener("submit", formSubmitHandler);
+profileForm.addEventListener("submit", submitProfileHandler);
+cardForm.addEventListener("submit", submitNewCardHandler);
 
-function formSubmitHandler(evt) {
+function submitProfileHandler(evt) {
   evt.preventDefault();
-  if (condition === "profile") {
-    nameValue.textContent = titleInput.value;
-    roleValue.textContent = descriptionInput.value;
-  }
-  if (condition === "photo") {
-    addNewCard(titleInput.value, descriptionInput.value);
-  }
-
-  closePopup();
+  nameValue.textContent = profileName.value;
+  roleValue.textContent = profileRole.value;
+  closePopup(profilePopup);
 }
 
-function closePopup() {
+function submitNewCardHandler(evt) {
+  evt.preventDefault();
+  const newCard = addNewCard(cardTitleValue.value, cardSrcValue.value);
+  renderCard(newCard);
+  resetData();
+  closePopup(cardPopup);
+}
+
+function loadProfileData() {
+  profileName.value = nameValue.textContent;
+  profileRole.value = roleValue.textContent;
+}
+
+function resetData() {
+  cardSrcValue.value = "";
+  cardTitleValue.value = "";
+}
+
+function renderCard(newCard) {
+  elements.prepend(newCard);
+}
+
+function closePopup(popupContainer) {
   popup.classList.remove("popup_visible");
+  popupContainer.classList.remove("popup__container-visible");
 }
 
-function closePhoto() {
-  photoPopup.classList.remove("photo-popup_visible");
-}
-
-function showPopup() {
+function showPopup(popupContainer) {
   popup.classList.add("popup_visible");
-  setData();
+  popupContainer.classList.add("popup__container-visible");
 }
 
 function setDefaultCard() {
   initialCards.forEach((item) => {
-    addNewCard(item.name, item.link);
+    const newCard = addNewCard(item.name, item.link);
+    renderCard(newCard);
   });
 }
 
 function addNewCard(title, imgSrc) {
   const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
-  cardElement.querySelector(".element__photo").src = imgSrc;
+  const photoContent = cardElement.querySelector(".element__photo");
+  photoContent.src = imgSrc;
+  photoContent.alt = title;
   cardElement.querySelector(".element__name").textContent = title;
+
   const likeBtn = cardElement.querySelector(".element__like-button");
   const deleteBtn = cardElement.querySelector(".element__delete-button");
-  const photoBtn = cardElement.querySelector(".element__photo");
 
   deleteBtn.addEventListener("click", (evt) => {
     evt.target.parentElement.remove();
@@ -124,17 +141,15 @@ function addNewCard(title, imgSrc) {
     evt.target.classList.toggle("element_liked");
   });
 
-  photoBtn.addEventListener("click", (evt) => openPhoto(evt));
+  photoContent.addEventListener("click", () => openPhoto(title, imgSrc));
 
-  elements.prepend(cardElement);
+  return cardElement;
 }
 
-function openPhoto(evt) {
-  const name = evt.target.parentElement.querySelector(".element__name").textContent;
-  const photo = evt.target.parentElement.querySelector(".element__photo").src;
+function openPhoto(title, imgSrc) {
   const photoName = photoPopup.querySelector(".photo-popup__name");
   const photoSrc = photoPopup.querySelector(".photo-popup__photo");
-  photoName.textContent = name;
-  photoSrc.src = photo;
-  photoPopup.classList.add("photo-popup_visible");
+  photoName.textContent = title;
+  photoSrc.src = imgSrc;
+  showPopup(photoPopup);
 }

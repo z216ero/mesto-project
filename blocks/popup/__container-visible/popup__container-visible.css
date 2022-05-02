@@ -1,0 +1,5 @@
+.popup__container-visible {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+}

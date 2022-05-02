@@ -4,6 +4,9 @@
 @import url(../blocks/body/body.css);
 @import url(../blocks/hover/hover.css);
 
+@import url(../blocks/profile-popup/profile-popup.css);
+@import url(../blocks/card-popup/card-popup.css);
+
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_visible/popup_visible.css);
 @import url(../blocks/popup/__container/popup__container.css);
@@ -45,6 +48,6 @@
 @import url(../blocks/photo-popup/__name/photo-popup__name.css);
 @import url(../blocks/photo-popup/__photo/photo-popup__photo.css);
 @import url(../blocks/photo-popup/__container/photo-popup__container.css);
-@import url(../blocks/photo-popup/_visible/photo-popup_visible.css);
 
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/popup/__container-visible/popup__container-visible.css);
