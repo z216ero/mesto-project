@@ -10,6 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  grid-area: edit;
 }
 
 @media screen and (max-width: 636px) {

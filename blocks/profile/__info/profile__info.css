@@ -1,14 +1,17 @@
 .profile__info {
   margin-left: 30px;
-  display: flex;
-  min-width: 336px;
-  max-width: 540px;
-  flex-wrap: wrap;
   margin-top: 22px;
+  display: grid;
+  gap: 0px 0px;
+  grid-template-areas:
+    "name edit"
+    "role role";
+    margin-right: 10px;
 }
 
 @media screen and (max-width: 636px) {
   .profile__info {
+    margin-right: 0px;
     margin-left: 0;
     width: 100%;
     justify-content: center;

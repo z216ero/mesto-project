@@ -1,7 +1,6 @@
 const photoPopup = document.querySelector(".photo-popup");
 const profilePopup = document.querySelector(".profile-popup");
 const cardPopup = document.querySelector(".card-popup");
-const popup = document.querySelector(".popup");
 
 const profileEditBtn = document.querySelector(".profile__edit-button");
 const newCardAddBtn = document.querySelector(".profile__add-button");
@@ -23,6 +22,9 @@ const nameValue = document.querySelector(".profile__name");
 const roleValue = document.querySelector(".profile__role");
 const cardTemplate = document.querySelector("#element-template").content;
 const elements = document.querySelector(".elements");
+
+const photoName = photoPopup.querySelector(".photo-popup__name");
+const photoSrc = photoPopup.querySelector(".photo-popup__photo");
 
 const initialCards = [
   {
@@ -54,8 +56,8 @@ const initialCards = [
 setDefaultCard();
 
 profileEditBtn.addEventListener("click", () => {
-  showPopup(profilePopup);
   loadProfileData();
+  showPopup(profilePopup);
 });
 
 newCardAddBtn.addEventListener("click", () => {
@@ -88,8 +90,8 @@ function submitNewCardHandler(evt) {
   evt.preventDefault();
   const newCard = addNewCard(cardTitleValue.value, cardSrcValue.value);
   renderCard(newCard);
-  resetData();
   closePopup(cardPopup);
+  cardForm.reset();
 }
 
 function loadProfileData() {
@@ -97,22 +99,15 @@ function loadProfileData() {
   profileRole.value = roleValue.textContent;
 }
 
-function resetData() {
-  cardSrcValue.value = "";
-  cardTitleValue.value = "";
-}
-
 function renderCard(newCard) {
   elements.prepend(newCard);
 }
 
 function closePopup(popupContainer) {
-  popup.classList.remove("popup_visible");
   popupContainer.classList.remove("popup__container-visible");
 }
 
 function showPopup(popupContainer) {
-  popup.classList.add("popup_visible");
   popupContainer.classList.add("popup__container-visible");
 }
 
@@ -147,8 +142,6 @@ function addNewCard(title, imgSrc) {
 }
 
 function openPhoto(title, imgSrc) {
-  const photoName = photoPopup.querySelector(".photo-popup__name");
-  const photoSrc = photoPopup.querySelector(".photo-popup__photo");
   photoName.textContent = title;
   photoSrc.src = imgSrc;
   showPopup(photoPopup);

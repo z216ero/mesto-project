@@ -4,18 +4,16 @@
   line-height: 48px;
   font-weight: 500;
   margin: 0;
-  width: 294px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  grid-area: name;
 }
 
 @media screen and (max-width: 636px) {
   .profile__name {
     text-align: center;
-    min-width: 120px;
     font-size: 27px;
-    max-width: 267px;
     line-height: 32px;
     margin-left: 29px;
   }
