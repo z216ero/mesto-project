@@ -7,8 +7,8 @@ let currentPopup;
  */
 export function closePopup(popupContainer) {
     currentPopup = null;
-    popupContainer.classList.remove("popup__container-visible");
-    popupContainer.removeEventListener('click',closeByHit);
+    popupContainer.classList.remove("popup_opened");
+    popupContainer.removeEventListener('click',closeByClick);
     document.removeEventListener('keydown', closeByEscape);
 }
 
@@ -18,8 +18,8 @@ export function closePopup(popupContainer) {
  */
 export function showPopup(popupContainer) {
     currentPopup = popupContainer;
-    popupContainer.classList.add("popup__container-visible");
-    popupContainer.addEventListener('click', closeByHit);
+    popupContainer.classList.add("popup_opened");
+    popupContainer.addEventListener('click', closeByClick);
     document.addEventListener('keydown', closeByEscape);
 }
 
@@ -29,7 +29,7 @@ function closeByEscape(evt) {
     }
 }
 
-function closeByHit(evt) {
+function closeByClick(evt) {
     if (evt.target.classList.contains('popup')) {
         closePopup(currentPopup);
     }

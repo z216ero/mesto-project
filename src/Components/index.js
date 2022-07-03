@@ -4,11 +4,11 @@ import { closePopup } from './modals.js';
 import { showPopup } from './modals.js';
 import { addNewCard } from './card.js';
 import { renderCard } from './card.js';
-import { setDefaultCard } from './card.js';
+import { setDefaultCards } from './card.js';
 
 //#region Variables
 const popups = document.querySelectorAll('.popup');
-
+const formList = Array.from(document.querySelectorAll('.popup__form'));
 const profilePopup = document.querySelector(".profile-popup");
 const cardPopup = document.querySelector(".card-popup");
 
@@ -32,8 +32,8 @@ const roleValue = document.querySelector(".profile__role");
 
 //#endregion
 
-enableValidation();
-setDefaultCard();
+enableValidation(formList);
+setDefaultCards();
 
 profileEditBtn.addEventListener("click", () => {
   loadProfileData();
@@ -44,22 +44,25 @@ newCardAddBtn.addEventListener("click", () => {
   showPopup(cardPopup);
 });
 
-profileForm.addEventListener("submit", submitProfileHandler);
-cardForm.addEventListener("submit", submitNewCardHandler);
+profileForm.addEventListener("submit", handleProfileFormSubmit);
+cardForm.addEventListener("submit", handleNewCardSumbit);
 
-function submitProfileHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   nameValue.textContent = profileName.value;
   roleValue.textContent = profileRole.value;
   closePopup(profilePopup);
 }
 
-function submitNewCardHandler(evt) {
+function handleNewCardSumbit(evt) {
   evt.preventDefault();
   const newCard = addNewCard(cardTitleValue.value, cardSrcValue.value);
   renderCard(newCard);
   closePopup(cardPopup);
   cardForm.reset();
+  const saveBtn = cardForm.querySelector('.popup__save-button');
+  saveBtn.disabled = true;
+  saveBtn.classList.add('button_inactive');
 }
 
 function loadProfileData() {

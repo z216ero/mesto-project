@@ -47,8 +47,8 @@ export function addNewCard(title, imgSrc) {
     const likeBtn = cardElement.querySelector(".element__like-button");
     const deleteBtn = cardElement.querySelector(".element__delete-button");
 
-    deleteBtn.addEventListener("click", (evt) => {
-        evt.target.parentElement.remove();
+    deleteBtn.addEventListener("click", () => {
+        cardElement.remove();
     });
 
     likeBtn.addEventListener("click", (evt) => {
@@ -60,7 +60,7 @@ export function addNewCard(title, imgSrc) {
     return cardElement;
 }
 
-export function setDefaultCard() {
+export function setDefaultCards() {
     initialCards.forEach((item) => {
         const newCard = addNewCard(item.name, item.link);
         renderCard(newCard);
@@ -70,5 +70,7 @@ export function setDefaultCard() {
 function openPhoto(title, imgSrc) {
     photoName.textContent = title;
     photoSrc.src = imgSrc;
+    photoSrc.alt=title;
+    console.log('eed');
     showPopup(photoPopup);
 }
