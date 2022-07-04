@@ -8,7 +8,6 @@ import { setDefaultCards } from './card.js';
 
 //#region Variables
 const popups = document.querySelectorAll('.popup');
-const formList = Array.from(document.querySelectorAll('.popup__form'));
 const profilePopup = document.querySelector(".profile-popup");
 const cardPopup = document.querySelector(".card-popup");
 
@@ -18,6 +17,16 @@ const newCardAddBtn = document.querySelector(".profile__add-button");
 popups.forEach(pop => {
   pop.querySelector(".popup__close-button").addEventListener('click', () => closePopup(pop));
 });
+
+const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  popupSaveButtonSelector : ".popup__save-button",
+  popupFieldsetSelector : '.popup__fieldset',
+  popupInputTypeError: 'popup__input_type_error',  
+  buttonInactive: 'button_inactive',
+  formInputErrorActive : 'form__input-error_active'
+}
 
 const profileForm = document.forms.profile;
 const profileName = profileForm.elements.name;
@@ -32,7 +41,7 @@ const roleValue = document.querySelector(".profile__role");
 
 //#endregion
 
-enableValidation(formList);
+enableValidation(validationConfig);
 setDefaultCards();
 
 profileEditBtn.addEventListener("click", () => {
