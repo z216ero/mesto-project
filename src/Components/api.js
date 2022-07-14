@@ -11,12 +11,7 @@ export const getCards = () => {
         headers: {
             authorization: config.headers.authorization,
         }
-    }).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then(checkResponse);
 }
 
 export const getProfileInfo = () => {
@@ -24,12 +19,7 @@ export const getProfileInfo = () => {
         headers: {
             authorization: config.headers.authorization,
         }
-    }).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then(checkResponse);
 }
 
 export const updateProfileInfo = (newName, newrole) => {
@@ -43,12 +33,7 @@ export const updateProfileInfo = (newName, newrole) => {
             name: newName,
             about: newrole
         })
-    }).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then(checkResponse);
 }
 
 export const addCardToServer = (cardName, cardLink) => {
@@ -62,12 +47,7 @@ export const addCardToServer = (cardName, cardLink) => {
             name: cardName,
             link: cardLink
         })
-    }).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then(checkResponse);
 }
 
 export const deleteCardFromServer = (cardId) => {
@@ -77,12 +57,7 @@ export const deleteCardFromServer = (cardId) => {
         headers: {
             authorization: config.headers.authorization,
         }
-    }).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then(checkResponse);
 }
 
 export const setLikeToPhoto = (cardId) => {
@@ -92,12 +67,7 @@ export const setLikeToPhoto = (cardId) => {
         headers: {
             authorization: config.headers.authorization,
         }
-    }).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then(checkResponse);
 }
 
 export const removeLikeFromPhoto = (cardId) => {
@@ -107,12 +77,7 @@ export const removeLikeFromPhoto = (cardId) => {
         headers: {
             authorization: config.headers.authorization,
         }
-    }).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then(checkResponse);
 }
 
 export const updateProfileAvatar = (newSrc) => {
@@ -125,10 +90,12 @@ export const updateProfileAvatar = (newSrc) => {
         body: JSON.stringify({
             avatar: newSrc,
         })
-    }).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then(checkResponse);
+}
+
+function checkResponse(res){
+    if (res.ok) {
+        return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
 }

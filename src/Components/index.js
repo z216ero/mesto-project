@@ -9,6 +9,7 @@ import { getProfileInfo } from './api';
 import { updateProfileInfo } from './api';
 import { addCardToServer } from './api';
 import { updateProfileAvatar } from './api';
+import { getCards } from './api';
 //#region Variables
 export const profile = {
   name: '',
@@ -43,13 +44,16 @@ const validationConfig = {
 const profileForm = document.forms.profile;
 const profileName = profileForm.elements.name;
 const profileRole = profileForm.elements.role;
+const profileSubmitBtn = profileForm.querySelector('.popup__save-button');
 
 const cardForm = document.forms.card;
 const cardTitleValue = cardForm.elements.title;
 const cardSrcValue = cardForm.elements.src;
+const cardSubmitBtn = cardForm.querySelector('.popup__save-button');
 
 const avatarForm = document.forms.avatar;
 const avatarUrl = avatarForm.elements.src;
+const avatarSubmitBtn = avatarForm.querySelector('.popup__save-button');
 
 const nameValue = document.querySelector(".profile__name");
 const roleValue = document.querySelector(".profile__role");
@@ -57,8 +61,15 @@ const profilePhoto = document.querySelector('.profile__avatar');
 //#endregion
 
 enableValidation(validationConfig);
-setDefaultCards();
-loadProfileDataFromServer();
+
+Promise.all([getProfileInfo(), getCards()])
+  .then(([userData, cards]) => {
+    loadStartProfileData(userData)
+    setDefaultCards(cards);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 profileEditBtn.addEventListener("click", () => {
   loadProfileData();
@@ -78,44 +89,45 @@ cardForm.addEventListener("submit", handleNewCardSumbit);
 avatarForm.addEventListener('submit', handleAvatarSubmit);
 
 function handleAvatarSubmit(evt) {
-  const saveBtn = avatarForm.querySelector('.popup__save-button');
-  saveBtn.textContent = "Сохранение...";
+  avatarSubmitBtn.textContent = "Сохранение...";
   evt.preventDefault();
-  updateProfileAvatar(avatarUrl.value).then((res) => loadProfileDataFromServer())
-    .finally((res) => saveBtn.textContent = "Сохранить")
+  updateProfileAvatar(avatarUrl.value)
+    .then((res) => {
+      loadProfileDataFromServer();
+      closePopup(avatarPopup);
+      avatarForm.reset();
+      avatarSubmitBtn.disabled = true;
+      avatarSubmitBtn.classList.add('button_inactive');
+    })
+    .finally((res) => avatarSubmitBtn.textContent = "Сохранить")
     .catch((err) => console.log(err));
-  closePopup(avatarPopup);
-  avatarForm.reset();
-
-  saveBtn.disabled = true;
-  saveBtn.classList.add('button_inactive');
 }
 
 function handleProfileFormSubmit(evt) {
-  const saveBtn = profileForm.querySelector('.popup__save-button');
-  saveBtn.textContent = "Сохранение...";
+  profileSubmitBtn.textContent = "Сохранение...";
   evt.preventDefault();
   updateProfileInfo(profileName.value, profileRole.value)
-    .then((res) => loadProfileDataFromServer())
-    .finally((res) => saveBtn.textContent = "Сохранить")
+    .then((res) => {
+      loadProfileDataFromServer();
+      closePopup(profilePopup);
+    })
+    .finally((res) => profileSubmitBtn.textContent = "Сохранить")
     .catch((err) => console.log(err));
-
-  closePopup(profilePopup);
 }
 
 function handleNewCardSumbit(evt) {
   evt.preventDefault();
-  const saveBtn = cardForm.querySelector('.popup__save-button');
-  saveBtn.textContent = "Сохранение...";
-  addCardToServer(cardTitleValue.value, cardSrcValue.value).then((res) => {
-    const newCard = addNewCard(cardTitleValue.value, cardSrcValue.value, [], profile.id, res._id);
-    renderCard(newCard);
-    closePopup(cardPopup);
-    cardForm.reset();
-    saveBtn.disabled = true;
-    saveBtn.classList.add('button_inactive');
-  })
-    .finally((res) => saveBtn.textContent = "Создать")
+  cardSubmitBtn.textContent = "Сохранение...";
+  addCardToServer(cardTitleValue.value, cardSrcValue.value)
+    .then((res) => {
+      const newCard = addNewCard(cardTitleValue.value, cardSrcValue.value, [], profile.id, res._id);
+      renderCard(newCard);
+      closePopup(cardPopup);
+      cardForm.reset();
+      cardSubmitBtn.disabled = true;
+      cardSubmitBtn.classList.add('button_inactive');
+    })
+    .finally((res) => cardSubmitBtn.textContent = "Создать")
     .catch((err) => console.log(err));
 }
 
@@ -136,6 +148,16 @@ function loadProfileDataFromServer() {
   }).catch((err) => {
     console.log(err);
   });
+}
+
+function loadStartProfileData(res) {
+  profile.name = res.name;
+  profile.about = res.about;
+  profile.id = res._id;
+  profile.avatar = res.avatar;
+  nameValue.textContent = res.name;
+  roleValue.textContent = res.about;
+  profilePhoto.src = res.avatar;
 }
 
 

@@ -19,7 +19,7 @@ export function addNewCard(title, imgSrc, likes, userId, cardId) {
     const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
     const photoContent = cardElement.querySelector(".element__photo");
     const likeCountElement = cardElement.querySelector('.element__like-count');
-    
+
     photoContent.src = imgSrc;
     photoContent.alt = title;
     likeCountElement.textContent = likes.length;
@@ -30,8 +30,10 @@ export function addNewCard(title, imgSrc, likes, userId, cardId) {
     const deleteBtn = cardElement.querySelector(".element__delete-button");
     if (userId === profile.id) {
         deleteBtn.addEventListener("click", () => {
-            cardElement.remove();
-            deleteCardFromServer(cardId).catch((err) => console.log(err));
+            deleteCardFromServer(cardId)
+                .then((res) => cardElement
+                    .remove()).
+                catch((err) => console.log(err));
         });
     }
     else {
@@ -41,13 +43,18 @@ export function addNewCard(title, imgSrc, likes, userId, cardId) {
     (likes.some(user => user._id === profile.id)) ? likeBtn.classList.add('element_liked') : '';
 
     likeBtn.addEventListener("click", (evt) => {
-        evt.target.classList.toggle("element_liked");
         if (evt.target.classList.contains("element_liked")) {
-            setLikeToPhoto(cardId).then((res) => likeCountElement.textContent = res.likes.length)
+            setLikeToPhoto(cardId).then((res) => {
+                likeCountElement.textContent = res.likes.length;
+                evt.target.classList.add("element_liked");
+            })
                 .catch((err) => console.log(err));
         }
         else {
-            removeLikeFromPhoto(cardId).then((res) => likeCountElement.textContent = res.likes.length)
+            removeLikeFromPhoto(cardId).then((res) => {
+                likeCountElement.textContent = res.likes.length;
+                evt.target.classList.remove("element_liked");
+            })
                 .catch((err) => console.log(err));
         }
     });
@@ -57,14 +64,10 @@ export function addNewCard(title, imgSrc, likes, userId, cardId) {
     return cardElement;
 }
 
-export function setDefaultCards() {
-    getCards().then((res) => {
-        res.forEach(obj => {
-            const newCard = addNewCard(obj.name, obj.link, obj.likes, obj.owner._id, obj._id);
-            renderCard(newCard);
-        })
-    }).catch((err) => {
-        console.log(err);
+export function setDefaultCards(res) {
+    res.forEach(obj => {
+        const newCard = addNewCard(obj.name, obj.link, obj.likes, obj.owner._id, obj._id);
+        renderCard(newCard);
     });
 }
 
