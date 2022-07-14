@@ -51,4 +51,6 @@
 .photo-popup__container{max-height:75vh;max-width:75vw;position:relative}
 .footer{color:#545454;font-size:18px;font-weight:400;line-height:22px;margin:67px 0 60px;min-width:282px}@media screen and (max-width:636px){.footer{font-size:14px;line-height:17px;margin:48px 19px 36px}}
 .popup_opened{display:flex;opacity:1;visibility:visible}
+.avatar__fieldset{border:none;display:flex;flex-direction:column;margin:54px 0 0;padding:0}
+.avatar__field{margin-bottom:48px;position:relative}
 
