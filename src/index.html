@@ -60,7 +60,23 @@
       </button>
     </div>
   </div>
-
+  <div class="avatar-popup popup">
+    <div class="popup__container">
+      <form novalidate action="post" name="avatar" id="avatar" class="popup__form">
+        <h2 class="popup__header">Обновить аватар</h2>
+        <fieldset class="avatar__fieldset">
+          <div class="avatar__field">
+            <input type="url" id="src" name="src" placeholder="Ссылка на картинку" class="popup__input" required />
+            <span class="src-error popup__input-error"></span>
+          </div>
+          <button type="submit" class="popup__save-button">Сохранить</button>
+        </fieldset>
+      </form>
+      <button type="button" class="popup__close-button">
+        <img src="<%=require('../images/close_icon.svg')%>" alt="закрыть" class="popup__close-icon" />
+      </button>
+    </div>
+  </div>
   <div class="root">
     <header class="header">
       <img src="<%=require('../images/logo.svg')%>" alt="лого место" class="header__logo" />
@@ -68,13 +84,19 @@
     <main class="content">
       <section class="profile">
         <div class="profile__wrapper">
-          <img src="<%=require('../images/avatar.svg')%>" alt="Аватарка" class="profile__avatar" />
+          <div class="profile__avatar-wrapper">
+            <img alt="Аватарка" class="profile__avatar" />
+            <div class="profile__avatar-edit-wrapper">
+              <img src="<%=require('../images/edit_avatar.svg')%>" alt="изменить"
+                class="profile__edit-avatar-button-icon" />
+            </div>
+          </div>
           <div class="profile__info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button type="button" class="profile__edit-button hover">
               <img src="<%=require('../images/photo_edit.svg')%>" alt="изменить" class="profile__edit-button-icon" />
             </button>
-            <p class="profile__role">Исследователь океана</p>
+            <p class="profile__role"></p>
           </div>
         </div>
         <button type="button" class="profile__add-button hover">
@@ -91,11 +113,13 @@
       <button type="button" class="element__delete-button"></button>
       <div class="element__bottom">
         <h3 class="element__name"></h3>
-        <button type="button" class="element__like-button"></button>
+        <div class="element__like-wrapper">
+          <button type="button" class="element__like-button"></button>
+          <div class="element__like-count"></div>
+        </div>
       </div>
     </article>
   </template>
-
 </body>
 
 </html>

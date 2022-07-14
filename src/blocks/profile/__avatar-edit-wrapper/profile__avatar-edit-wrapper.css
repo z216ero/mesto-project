@@ -1,0 +1,18 @@
+.profile__avatar-edit-wrapper {
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile__avatar-edit-wrapper:hover .profile__edit-avatar-button-icon {
+    opacity: 1;
+}
+
+.profile__avatar-edit-wrapper:hover {
+    background: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+}
